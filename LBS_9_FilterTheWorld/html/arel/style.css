@@ -1,0 +1,59 @@
+body
+{
+	font: bold 16px/18px Helvetica, Arial, Sans-serif;
+	margin: 0px;
+	padding: 0;
+	-webkit-text-size-adjust: 100%;
+	background-color:transparent;
+}
+
+.filterOptions
+{
+	color: white;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	height: auto;
+	position: absolute;
+	bottom: 5px;
+	background-color: #333;
+	-webkit-box-shadow: 2px 2px 4px #666;
+	opacity: 0.8;
+}
+
+.step, .dropdown
+{
+	margin: 0 0 5px 0;
+}
+
+.label
+{
+	width: 140px;
+	text-align: left;
+	display: inline-block;
+}
+
+.filterbuttonArea
+{
+	padding: 10px;	
+	color: white;
+	opacity: 0.8;	
+	margin: 0 auto 0 auto;
+	width: 35px;
+}
+
+a, a:hover, a:visited
+{
+	text-align: center;
+	text-decoration: none; 
+	color: white;			
+}
+
+.filterOptionsInner
+{
+	background-color: #333;
+	padding: 10px;
+	height: auto;	
+	display: none;
+	
+}

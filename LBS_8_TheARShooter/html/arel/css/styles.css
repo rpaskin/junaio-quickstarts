@@ -1,0 +1,13 @@
+* {
+	/* turns off the webkit magnifier glass and so on, which will be triggered
+	by the on touch events otherwise */
+	-webkit-highlight:           none;
+	-webkit-tap-highlight-color: rgba(200,0,0,0);
+	-webkit-touch-callout :      none;
+	-webkit-user-select:         none;
+}
+
+body {
+        background-color: transparent;
+}
+

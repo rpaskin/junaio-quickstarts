@@ -1,0 +1,98 @@
+
+@font-face {
+    font-family: "BebasNeue";
+    src: url("BebasNeue.otf");
+}
+.ace {
+    font-family: "Ace Crikey";
+    font-size: 230%;
+}
+body
+{
+	font-family: Helvetica, Arial, sans-serif;
+	margin: 0px;
+	padding: 0;
+	font-size: 1em;	
+}
+
+.infoPlayer1, .infoPlayer2
+{
+	width: 150px;
+	color: #fff;
+	margin: 0px;	
+	padding: 0px;
+	position: absolute;
+	bottom: 5px;
+	left: 50%;
+	margin-left: -75px;		
+}
+
+.player1
+{
+	display: inline-block;
+	float: left;
+	background-image: url('images/BT_1_score.png');
+	-webkit-border-radius: 8px;
+	color: #dad2c0;
+	font: normal normal bold 17px/normal BebasNeue, Helvetica, Arial, sans-serif;
+	text-align: left;	
+	padding: 10px;
+	margin: 10px 0 0 0;
+	font-size: 1em;
+	-webkit-background-size:100% 100%
+}
+
+.player2
+{
+	display: inline-block;
+	float: right;
+	background-image: url('images/BT_2_score.png');
+	color: #d8d1be;
+	font: normal normal bold 17px/normal BebasNeue, Helvetica, Arial, sans-serif;
+	text-align: left;	
+	padding: 10px;
+	margin: 10px 0 0 0;
+	font-size: 1em;
+	-webkit-background-size:100% 100%
+}
+
+.info, .result, .restart
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 70%;
+	height: 40%;
+	margin-top: -20%; 
+	margin-left: -40%;
+	color: #333;
+	background-color: #fff;
+	border-color: #aaa;
+	border-style:solid;
+	border-width:2px;
+	-webkit-border-radius: 8px;
+	font: normal normal bold 16px/normal BebasNeue, Helvetica, Arial, sans-serif;
+	padding: 10px;
+	text-align: center;
+	opacity: 0.8;
+}
+
+.result
+{
+	height: 20%;
+	margin-top: -10%; 
+	margin-left: -30%;
+	font: normal normal bold 30px/normal BebasNeue, Helvetica, Arial, sans-serif;
+}
+
+.restart
+{
+	position: absolute;
+	top: 80%;
+	height: 10%;
+	margin-top: -5%; 
+	color: #aaa;
+	background-color: #333;
+	border-color: #000;
+	font: normal normal bold 30px/normal BebasNeue, Helvetica, Arial, sans-serif;
+}
