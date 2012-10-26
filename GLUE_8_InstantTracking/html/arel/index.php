@@ -19,7 +19,9 @@
 		button.style.backgroundColor='#fff';
 		
 		//get the image from the client	and send it to the pois/visualsearch interface
-		arel.Scene.triggerServerCall(false, [], true);		
+		arel.Scene.startInstantTracking(arel.Tracking.INSTANT2DG);
+		$('#scanCenter').fadeOut("slow");
+		$('#center').fadeOut("slow");
 	}
 
 </script>

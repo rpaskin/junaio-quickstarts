@@ -32,17 +32,9 @@ $aUrl = explode('/', $path);
 if(in_array('pois', $aUrl))
 {
 	//the visual search request holds the image
-	if(in_array_substr('visualsearch', $aUrl))
+	if(in_array_substr('search', $aUrl))
 	{
-		include '../src/vsearch.php';
-		exit;
-	}
-	//default request when starting
-	//just return a HTML overlay with AREL JavaScript
-	else if(in_array_substr('search', $aUrl))
-	{
-		ArelXMLHelper::start(NULL, WWW_ROOT . "/arel/index.php", NULL);
-		ArelXMLHelper::end();
+		include '../src/search.php';
 		exit;
 	}
 }
