@@ -3,7 +3,7 @@
 /**
  * @copyright  Copyright 2012 metaio GmbH. All rights reserved.
  * @link       http://www.metaio.com
- * @author     Stephan Evers
+ * @author     Nicolas King
  **/
 
 error_reporting(E_ALL);			//for displaying errors

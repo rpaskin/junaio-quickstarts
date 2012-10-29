@@ -2,7 +2,7 @@
 /**
  * @copyright  Copyright 2012 metaio GmbH. All rights reserved.
  * @link       http://www.metaio.com
- * @author     Stephan Evers
+ * @author     Nicolas King
  **/
 
 define('JUNAIO_KEY', '9b9f50f7e5dcbc322e3b68d23e0a90ff');
