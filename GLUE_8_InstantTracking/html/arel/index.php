@@ -3,8 +3,7 @@
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 <meta name="viewport"
 	content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
-<script type="text/javascript"
-	src="http://dev.junaio.com/arel/js/arel_beta_min.js"></script>
+<script type="text/javascript" src="js/arel_2.0.4_min.js"></script>
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript">
 
@@ -22,8 +21,14 @@
 		arel.Scene.startInstantTracking(arel.Tracking.INSTANT2DG);
 		$('#scanCenter').fadeOut("slow");
 		$('#center').fadeOut("slow");
+		$('#share').fadeIn("slow");
 	}
 
+	function share(button)
+	{
+		button.style.backgroundColor='#fff';
+		arel.Scene.shareScreenshot();
+	}
 </script>
 
 <style type="text/css">
@@ -100,6 +105,28 @@ body {
 	text-align: center;
 	opacity: 0.8;	
 }
+
+#share {
+	border-style: solid;
+	border-width: 2px;
+	-webkit-border-radius: 8px;
+	position: absolute;
+	height: 2.3em;
+	bottom: 10px;
+	
+	left: 0;
+	right: 0;
+	padding: 2px;
+	color: #aaa;
+	background-color: #333;
+	border-color: #000;
+	font: normal normal bold 1.5em/normal Helvetica, Arial,
+		sans-serif;
+	text-align: center;
+	opacity: 0.8;	
+	
+	display: none;
+}
 </style>
 
 <title>Arel Instant Tracker</title>
@@ -111,6 +138,9 @@ body {
 	<div id="scanCenter">
 		<div id="scan" ontouchstart="scanNow(this)"
 			ontouchend="style.backgroundColor='#333'">Scan</div>
+	</div>
+	<div id="share" ontouchstart="share(this)">
+		Share
 	</div>
 </body>
 </html>
