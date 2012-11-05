@@ -2,7 +2,7 @@
     <head>
     	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     	<script type="text/javascript" src="js/jquery-1.4.2.js"></script>
-       	<script type="text/javascript" src="http://dev.junaio.com/arel/js/arel_beta_min.js"></script>
+       	<script type="text/javascript" src="http://dev.junaio.com/arel/js/arel.js"></script>
     	<script type="text/javascript" src="js/logic_LBS9.js"></script>
     	<link href="style.css" rel="stylesheet" type="text/css" />
     	<title>First Arel</title>

@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
 	<script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
-	<script src="http://dev.junaio.com/arel/js/arel_beta_min.js" type="text/javascript"></script>
+	<script src="http://dev.junaio.com/arel/js/arel.js" type="text/javascript"></script>
 	<script src="js/logic_LBS6.js" type="text/javascript"></script>
 	<style type="text/css">
 		

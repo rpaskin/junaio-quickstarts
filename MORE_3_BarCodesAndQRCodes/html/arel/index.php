@@ -4,7 +4,7 @@
 <meta name="viewport"
 	content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
 <script type="text/javascript"
-	src="http://dev.junaio.com/arel/js/arel_beta_min.js"></script>
+	src="http://dev.junaio.com/arel/js/arel.js"></script>
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript">
 

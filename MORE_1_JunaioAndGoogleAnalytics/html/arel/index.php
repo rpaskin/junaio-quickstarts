@@ -4,7 +4,7 @@
     	<script type="text/javascript">
     		var analyticsUser = "<?php echo $_GET['analyticsuser'];?>";
     	</script>
-    	<script type="text/javascript" src="http://dev.junaio.com/arel/js/arel_beta_min.js"></script>
+    	<script type="text/javascript" src="http://dev.junaio.com/arel/js/arel.js"></script>
     	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
     	<script type="text/javascript" src="js/arel_plugin_analytics_v1_2.js"></script>  
     	<script type="text/javascript" src="js/logic_More1.js"></script>
