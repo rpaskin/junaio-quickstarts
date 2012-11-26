@@ -20,6 +20,15 @@ require_once '../library/arel_xmlhelper.class.php';
  
 //use the Arel Helper to start the output with arel
 
+
+/**
+ * 	For more information about using reflection map, please look at those pages:
+ * 	
+ * 	http://docs.metaio.com/bin/view/Main/EnvironmentMapping
+ *  http://dev.metaio.com/sdk/tutorials/content-types/
+ * 
+ */
+
 //start output
 ArelXMLHelper::start(NULL, NULL, "http://www.junaio.com/publisherDownload/tutorial/tracking_tutorial.zip");
 

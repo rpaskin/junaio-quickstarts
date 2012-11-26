@@ -11,7 +11,7 @@ ini_set("display_errors", 1);
 
 require_once './../library/arel_xmlhelper.class.php';
 
-$trackingXML = "http://www.junaio.com/publisherDownload/tutorial/tracking_tutorial.xml_enc";
+$trackingXML = "http://dev.junaio.com/publisherDownload/tutorial/tracking_tutorial.zip";
 $arelPath = "";
 		
 ArelXMLHelper::start(NULL,$arelPath,$trackingXML);
