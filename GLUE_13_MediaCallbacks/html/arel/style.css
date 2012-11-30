@@ -1,0 +1,14 @@
+body
+{
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.title
+{
+	width: 100%;
+	color: #FFF;
+	font: normal normal bold 1em/normal Helvetica, Arial, sans-serif;
+	margin: 0px 0px 10px 0px;	
+	padding: 10px 0px 10px 0px;
+	text-align: center;
+}
