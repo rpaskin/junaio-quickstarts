@@ -6,6 +6,7 @@
 
 require_once 'arel_object_model3D.class.php';
 require_once 'arel_object_poi.class.php';
+require_once 'arel_anchor.class.php';
 require_once 'SimpleXMLExtended.php';
 
 /**
@@ -29,8 +30,9 @@ class ArelXMLHelper
 	 * Tracking type bar code and QR codes
 	 */
 	const TRACKING_BARCODE_QR = "Code";
-	
-	/**
+
+
+    /**
 	 * Helper for creating a basic Location Based 3D Model.
 	 * @param String $id Id of the AREL Object
 	 * @param String $title Title of the AREL Object to be displayed in the popup (if added) as well as list and map
@@ -227,18 +229,19 @@ class ArelXMLHelper
 	 * @param String $id Id of the AREL Object
 	 * @param String $model Path to the model of the Object or to the zip package holding all the information
 	 * @param String $texture Path to the texture of the Object (jpg or png file) 
-	 * @param Array $screenCoordinates An array given all screen coordinate parameters x,y.
+	 * @param int $screenAnchor A constant defining the screen anchor @see ArelAnchor.
 	 * @param Array $scale An array providing scale values along three axis (x, y, z)
-	 * @param ArelRotation $rotation Provides the rotation information. Can be defined as euler (rad / deg), quaternion, axisangle or matrix 	 
+	 * @param ArelRotation $rotation Provides the rotation information. Can be defined as euler (rad / deg), quaternion, axisangle or matrix
+     * @return ArelObjectModel3D The object created
 	 */
-	static public function createScreenFixedModel3D($id, $model, $texture, $screenCoordinates, $scale, $rotation)
+	static public function createScreenFixedModel3D($id, $model, $texture, $screenAnchor, $scale, $rotation)
 	{
 		$obj = new ArelObjectModel3D($id);
 		$obj->setModel($model);
 		$obj->setTexture($texture);
 		$obj->setScale($scale);
 		$obj->setRotation($rotation);
-		$obj->setScreenCoordinates($screenCoordinates);
+		$obj->setScreenAnchor($screenAnchor);
 		
 		return $obj;
 	}
@@ -252,7 +255,7 @@ class ArelXMLHelper
 	 */
 	static public function start($resourcesPath = NULL, $arelPath = NULL, $trackingXML = null)
 	{
-		$arelBackUpPath = "http://dev.junaio.com/arel/noarel.html";
+		$arelBackUpPath = "";
 		
 		ob_start();
 		ob_clean();
@@ -418,12 +421,12 @@ class ArelXMLHelper
 	   		$pickingEnabled = $oObject->isPickingEnabled();
 	   		$cosID = $oObject->getCoordinateSystemID();
 	   		$occluding = $oObject->isOccluding();
-	   		$oScreenCoord = $oObject->getScreenCoordinates();
 	   		$transparency = $oObject->getTransparency();
 	   		$renderPosition = $oObject->getRenderOrderPosition();
+            $screenAnchor = $oObject->getScreenAnchor();
 	   		   	
 		   	if(	isset($cosID) || isset($occluding) || isset($pickingEnabled) || 
-		   		isset($oScreenCoord) || isset($transparency) || isset($renderPosition))
+		   		isset($screenAnchor) || isset($transparency) || isset($renderPosition))
 		   	{
 		   		$properties = $assets3D->addChild("properties");
 		   		
@@ -441,21 +444,12 @@ class ArelXMLHelper
 		   			
 		   		if(isset($renderPosition))
 		   			$properties->addChild("renderorder", $oObject->getRenderOrderPosition());
-		   			
-		   		if(isset($oScreenCoord))
-		   		{
-		   			$screenCoord = $properties->addChild("screencoordinates");
-		   			$oScreenCoord = $oObject->getScreenCoordinates();
-		   			
-		   			try {
-		   				$screenCoord->addChild("x", $oScreenCoord[0]);
-			   			$screenCoord->addChild("y", $oScreenCoord[1]);
-		   			}
-		   			catch(Exception $e)
-		   			{
-		   				return $e;
-		   			}	   		
-		   		}	   			
+
+                if(isset($screenAnchor)) {
+                    $screenAnchorProperty = $properties->addChild("screenaanchor", $oObject->getScreenAnchor());
+                    if( $oObject->getScreenAnchorFlag() != NULL)
+                        $screenAnchorProperty->addAttribute("flags", $oObject->getScreenAnchorFlag(), null);
+                }
 		   	}
 	   	}
 	   	

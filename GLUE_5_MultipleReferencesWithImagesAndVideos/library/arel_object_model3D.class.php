@@ -26,8 +26,10 @@ class ArelObjectModel3D extends ArelObject
 	private $transparency = NULL;
 	private $renderorderposition = NULL;
 	private $picking = NULL;
- 
-	/**
+    private $screenAnchor = NULL;
+    private $screenAnchorFlag = NULL;
+
+    /**
 	 * Create the model
 	 * @param String $id
 	 */
@@ -177,24 +179,40 @@ class ArelObjectModel3D extends ArelObject
 	public function setCoordinateSystemID($coordinateSystemID){
 		$this->coordinateSystemID = $coordinateSystemID;
 	}
-	
-	/**
-	 * Get the Objects relative to screen coordinates (Only if Translation and Location is not set)
-	 * @return Array Position of the 3D Object on the Screen as x,y 
-	 */
-	public function getScreenCoordinates() {
-		return $this->onscreen;
-	}
 
-	/**
-	 * Set the Objects relative to screen coordinates (Only if Translation and Location is not set)
-	 * @param Array $onscreen Position of the 3D Object on the Screen as x,y
-	 */
-	public function setScreenCoordinates($onscreen){
-		$this->onscreen = $onscreen;
-	}
-	
-	/**
+    /**
+     * Sets the coordinates of the object relative to the screen anchor passed as the first argument
+     * @param int $screenAnchor Constant defining the screen anchor where the object will be placed @see ArelAnchor
+     */
+    public function setScreenAnchor($screenAnchor) {
+        $this->screenAnchor = $screenAnchor;
+    }
+
+    /**
+     * Get the screen anchor where the object is placed
+     * @return int Anchor constant of the screen position @see ArelAnchor
+     */
+    public function getScreenAnchor() {
+        return $this->screenAnchor;
+    }
+
+    /**
+     * Sets the flags that will be used to modify the object behavior when placed relative to the screen
+     * @param int $screenAnchorFlag Constant defining the behavior of the object @see ArelAnchor
+     */
+    public function setScreenAnchorFlag($screenAnchorFlag) {
+        $this->screenAnchorFlag = $screenAnchorFlag;
+    }
+
+    /**
+     * Get the screen anchor flag used to modify the objects behavior when it is placed relative to the screen
+     * @return int Anchor constant of the screen position @see ArelAnchor
+     */
+    public function getScreenAnchorFlag() {
+        return $this->screenAnchorFlag;
+    }
+
+   	/**
 	 * Get the transparency of the 3D model.
 	 * @return Float The transparency value, where 1 corresponds to an invisible model and 0 corresponds to a fully opaque model).
 	 */
