@@ -98,7 +98,7 @@ function fullscreenMovie()
 	{
 		try
 		{
-			if(type && type == "VIDEO_CLOSED")
+			if(type && type == arel.Events.Media.VIDEO_CLOSED)
 			{
 				arel.Scene.removeObjects();
 				arel.Events.removeListener(arel.Media);
@@ -157,7 +157,7 @@ function soundFile()
 	{
 		try
 		{
-			if(type && type == "onsoundplaybackcomplete")
+			if(type && type == arel.Events.Media.ONSOUNDPLAYBACKCOMPLETE)
 			{
 				arel.Scene.removeObjects();
 				arel.Events.removeListener(arel.Media);
@@ -202,7 +202,7 @@ function webSite()
 	{
 		try
 		{
-			if(type && type == "WEBSITE_CLOSED")
+			if(type && type == arel.Events.Media.WEBSITE_CLOSED)
 			{
 				arel.Scene.removeObjects();
 				arel.Events.removeListener(arel.Media);
