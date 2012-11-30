@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results trackingurl="resources/tracking_tutorial.zip">
+<arel>index.html</arel>
+<object id="1">
+    <assets3d>
+        <model><![CDATA[resources/metaioman.md2]]></model>
+        <texture><![CDATA[resources/metaioman.png]]></texture>
+        <transform>
+            <translation>
+                <x>0</x>
+                <y>0</y>
+                <z>0</z>
+            </translation>
+            <rotation type="eulerdeg">
+                <x>0</x>
+                <y>0</y>
+                <z>0</z>
+            </rotation>
+            <scale>
+                <x>3</x>
+                <y>3</y>
+                <z>3</z>
+            </scale>
+        </transform>
+        <properties>
+            <coordinatesystemid>1</coordinatesystemid>
+        </properties>
+    </assets3d>
+</object>
+</results>
