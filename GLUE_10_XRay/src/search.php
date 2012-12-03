@@ -64,7 +64,7 @@ $id = "metaioman";
 $model = WWW_ROOT. "/resources/metaioman_xray.zip";  
 $texture = "";  
 $translation = array(0,0,0);  
-$scale = array(21.5,21.5,21.5);  
+$scale = array(50,50,50);
 $rotation = array(0,0,0); 
 $coordinateSystemID = 1;
 
