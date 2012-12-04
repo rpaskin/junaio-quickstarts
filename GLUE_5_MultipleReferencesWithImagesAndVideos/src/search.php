@@ -30,7 +30,7 @@ $oObject = ArelXMLHelper::createGLUEModel3DFromMovie(
 											"movie",
 											WWW_ROOT . "/resources/coral.3g2", 
 											array(0,0,0), //translation 
-											array(.15,.15,.15), //scale
+											array(2.5,2.5,2.5), //scale
 											new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0,0,0)), //rotation
 											1 //CoordinateSystemID)
 										);
@@ -55,7 +55,7 @@ $oObject = ArelXMLHelper::createGLUEModel3DFromMovie(
 											"movieTransparent",
 											WWW_ROOT . "/resources/sampleMovie.alpha.3g2", 
 											array(0,-50,0), //translation 
-											array(.3,.3,.3), //scale
+											array(2.5,2.5,2.5), //scale
 											new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0,0,-90)), //rotation
 											3 //CoordinateSystemID)
 										);
