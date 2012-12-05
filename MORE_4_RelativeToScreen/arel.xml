@@ -16,9 +16,9 @@
             <z>0.0</z>
           </rotation>
           <scale>
-            <x>2.5</x>
-            <y>2.5</y>
-            <z>2.5</z>
+            <x>1.25</x>
+            <y>1.25</y>
+            <z>1.25</z>
           </scale>
         </transform>
         <properties>
@@ -41,9 +41,9 @@
                <z>0.0</z>
              </rotation>
              <scale>
-               <x>2.0</x>
-               <y>2.0</y>
-               <z>2.0</z>
+               <x>1.0</x>
+               <y>1.0</y>
+               <z>1.0</z>
              </scale>
            </transform>
            <properties>
@@ -66,9 +66,9 @@
                    <z>0.0</z>
                  </rotation>
                  <scale>
-                   <x>2.0</x>
-                   <y>2.0</y>
-                   <z>2.0</z>
+                   <x>1.0</x>
+                   <y>1.0</y>
+                   <z>1.0</z>
                  </scale>
                </transform>
                <properties>
@@ -91,9 +91,9 @@
                       <z>0.0</z>
                     </rotation>
                     <scale>
-                      <x>2.0</x>
-                      <y>2.0</y>
-                      <z>2.0</z>
+                      <x>1.0</x>
+                      <y>1.0</y>
+                      <z>1.0</z>
                     </scale>
                   </transform>
                   <properties>
@@ -116,9 +116,9 @@
                          <z>0.0</z>
                        </rotation>
                        <scale>
-                         <x>2.0</x>
-                         <y>2.0</y>
-                         <z>2.0</z>
+                         <x>1.0</x>
+                         <y>1.0</y>
+                         <z>1.0</z>
                        </scale>
                      </transform>
                      <properties>

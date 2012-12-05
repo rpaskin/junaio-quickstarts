@@ -43,11 +43,9 @@ $legoWeapon = ArelXMLHelper::createScreenFixedModel3D(
 						WWW_ROOT."/resources/legoBlaster.md2", //model 
 						WWW_ROOT."/resources/legoBlaster.png", //texture
 						ArelAnchor::ANCHOR_BR, //screen Anchor
-						array(2,2,2), //scale
+						array(1,1,1), //scale
 						new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0, 90, 0)) //rotation
 				);
-
-				$legoWeapon->setTranslation(array(-100,-100,0));
 				
 ArelXMLHelper::outputObject($legoWeapon);
 
