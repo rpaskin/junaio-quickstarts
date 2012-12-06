@@ -23,7 +23,7 @@ $id = "overlay";
 $model = WWW_ROOT."/resources/overlay.zip";
 $texture = "";
 $screenCoordinates = ArelAnchor::ANCHOR_CC;
-$scale = array(30,30,30);
+$scale = array(20,20,20);
 $rotation = array(0,0,0);
 
 $oObject = ArelXMLHelper::createScreenFixedModel3D(	$id,
