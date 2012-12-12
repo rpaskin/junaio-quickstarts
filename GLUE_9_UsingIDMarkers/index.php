@@ -15,41 +15,27 @@
  *  					- handling multiple tracking events
  **/
 
-//if issues occur with htaccess, also the path variable can be used
-//htaccess rewrite enabled:
-//Callback URL: http://www.callbackURL.com
-//
-//htacces disabled:
-//Callback URL: http://www.callbackURL.com/?path=
+require_once '../ARELLibrary/arel_xmlhelper.class.php';
 
-if(isset($_GET['path']))
-	$path = $_GET['path'];
-else
-	$path = $_SERVER['REQUEST_URI'];
-	
-$aUrl = explode('/', $path);
+//use the Arel Helper to start the output with arel
 
-//if the request if correct, return the information
-if(in_array_substr('search', $aUrl))
-{
-	define('WWW_ROOT', "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])); //path to online location
-	
-	//the search return needs to be provided
-	include 'search.php';
-	exit;
-}	
+//start output
+ArelXMLHelper::start(NULL, "/arel/index.html", "/resources/trackingXML1-3.xml");
 
+//return the trooper and place him on ID Marker 2
+$oObject = ArelXMLHelper::createGLUEModel3D(
+											"lTrooper",	//ID 
+											"/resources/legoStormTrooper.zip", //model 
+											"/resources/legoStormTrooper.png", //texture
+											array(0,0,0), //translation
+											array(0.05,0.05,0.05), //scale
+											new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0,0,0)), //rotation
+											2 //CoordinateSystemID
+										);
 
-// Wrong request -> return not found
-header('HTTP/1.0 404 Not found');
+ArelXMLHelper::outputObject($oObject);
 
-function in_array_substr($needle, $haystack)
-{
-	foreach($haystack as $value)
-	{
-		if(strpos($value, $needle) !== false)
-			return true;
-	}
-	
-	return false;	
-}
+//end the output
+ArelXMLHelper::end();
+
+?>

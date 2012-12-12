@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+  <results>
+    <arel>index.html</arel>
+    <object id="fadenkreuz">
+      <assets3d>
+        <texture>fadenkreuz.png</texture>
+        <transform>
+          <translation>
+            <x>0.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+          </translation>
+          <rotation type="eulerdeg">
+            <x>0.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+          </rotation>
+          <scale>
+            <x>0.75</x>
+            <y>0.75</y>
+            <z>0.75</z>
+          </scale>
+        </transform>
+        <properties>
+            <screenanchor>48</screenanchor>
+           </properties>
+         </assets3d>
+       </object>
+       <object id="blaster">
+       		<assets3d>
+            	<model>legoBlaster.zip</model>
+            	<texture>legoBlaster.png</texture>
+                <transform>
+                	<translation>
+                    	<x>-50.0</x>
+                        <y>0.0</y>
+                        <z>0.0</z>
+                    </translation>
+                	<rotation type="eulerdeg">
+                		<x>0.0</x>
+                    	<y>90.0</y>
+                    	<z>0.0</z>
+                 	</rotation>
+                 	<scale>
+                 		<x>0.75</x>
+                    	<y>0.75</y>
+                    	<z>0.75</z>
+                 	</scale>
+                 </transform>
+                 <properties>
+                 	<screenanchor>6</screenanchor>
+                 </properties>
+             </assets3d>
+       </object>
+  </results>

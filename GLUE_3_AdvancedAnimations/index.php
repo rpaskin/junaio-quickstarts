@@ -25,41 +25,67 @@
  *  			start over! 
  **/
 
-//if issues occur with htaccess, also the path variable can be used
-//htaccess rewrite enabled:
-//Callback URL: http://www.callbackURL.com
-//
-//htacces disabled:
-//Callback URL: http://www.callbackURL.com/?path=
+error_reporting(E_ALL);			//for displaying errors
+ini_set("display_errors", 1);
 
-if(isset($_GET['path']))
-	$path = $_GET['path'];
-else
-	$path = $_SERVER['REQUEST_URI'];
-	
-$aUrl = explode('/', $path);
+require_once '../ARELLibrary/arel_xmlhelper.class.php';
+ 
+//use the Arel Helper to start the output with arel
 
-//if the request if correct, return the information
-if(in_array_substr('search', $aUrl))
-{
-	define('WWW_ROOT', "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])); //path to online location
-	
-	//the search return needs to be provided
-	include 'search.php';
-	exit;
-}	
+//start output
+ArelXMLHelper::start(NULL, "arel/index.html", "http://www.junaio.com/publisherDownload/tutorial/tracking_tutorial.zip");
 
+//metaio man 3D Model
+//Important: note how it is set to transparent 
+$oObject = ArelXMLHelper::createGLUEModel3D(
+											"mMan",	//ID 
+											"http://dev.junaio.com/publisherDownload/tutorial/metaioman.md2", //model Path 
+											"http://dev.junaio.com/publisherDownload/tutorial/metaioman.png", //texture Path
+											array(-150,-100,0), //translation
+											array(2,2,2), //scale
+											new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0,0,90)), //rotation
+											1 //CoordinateSystemID
+										);
+//set the object transparent
+$oObject->setTransparency(1);
+//return the model
+ArelXMLHelper::outputObject($oObject);
 
-// Wrong request -> return not found
-header('HTTP/1.0 404 Not found');
+//2. a trooper model
+//note the additional parameter that is used in AREL JS
+$oObject = ArelXMLHelper::createGLUEModel3D(
+											"lTrooper",	//ID 
+											"resources/legoStormTrooper.zip", //model 
+											"resources/legoStormTrooper.png", //texture
+											array(150,-100,0), //translation
+											array(0.1,0.1,0.1), //scale
+											new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(90,0,0)), //rotation
+											1 //CoordinateSystemID
+										);
+										
+//the sound will be needed in AREL JS once the anmation starts
+$oObject->addParameter("appearSound", "resources/beam.mp3");
+//return the model
+ArelXMLHelper::outputObject($oObject);
 
-function in_array_substr($needle, $haystack)
-{
-	foreach($haystack as $value)
-	{
-		if(strpos($value, $needle) !== false)
-			return true;
-	}
-	
-	return false;	
-}
+//the occlusion box, making the trooper invisible for the time it has not appeared
+$box = ArelXMLHelper::createGLUEModel3D(
+						"box", //id
+						"resources/occlusionBox.zip", //model
+						NULL, 
+						array(0,-350,-350), //translation
+						array(7, 7, 7), //scale
+						new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0,0,0)),
+						1 //rotation
+				);
+
+//this model is set as a occlusion model
+$box->setOccluding(true);
+
+//output the object
+ArelXMLHelper::outputObject($box);
+
+//end the output
+ArelXMLHelper::end();
+
+?>

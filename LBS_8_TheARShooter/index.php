@@ -15,42 +15,53 @@
  * 					- adding new models on the fly (more troopers to shoot)
  **/
 
-//if issues occur with htaccess, also the path variable can be used
-//htaccess rewrite enabled:
-//Callback URL: http://www.callbackURL.com
-//
-//htacces disabled:
-//Callback URL: http://www.callbackURL.com/?path=
+require_once '../ARELLibrary/arel_xmlhelper.class.php';
 
-if(isset($_GET['path']))
-	$path = $_GET['path'];
+if(!empty($_GET['l']))
+    $position = explode(",", $_GET['l']);
 else
-	$path = $_SERVER['REQUEST_URI'];
-	
-$aUrl = explode('/', $path);
+    trigger_error("user position (l) missing. For testing, please provide a 'l' GET parameter with your request. e.g. pois/search/?l=23.34534,11.56734,0");
+ 
+ArelXMLHelper::start(NULL, "/arel/index.html");
 
-//if the request if correct, return the information
-if(in_array_substr('search', $aUrl))
-{
-	//this will be used for referencing information in the search.php
-	define('WWW_ROOT', "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])); //path to online location
+//a trooper
+$legoMan = ArelXMLHelper::create360Object(
+						"legoTrooper", //id
+						"/resources/legoStormTrooper.zip", //model 
+						"/resources/legoStormTrooper.png", //texture
+						array(0,2000,-1500), //translation
+						array(0.4, 0.4, 0.4), //scale
+						new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(90, 0, 90)) //rotation
+				);
 
-	//the search return needs to be provided
-	include 'search.php';
-	exit;
-}	
+ArelXMLHelper::outputObject($legoMan);
 
+//the weapon
+$legoWeapon = ArelXMLHelper::createScreenFixedModel3D(
+						"legoBlaster", //id
+						"/resources/legoBlaster.zip", //model 
+						"/resources/legoBlaster.png", //texture
+						ArelAnchor::ANCHOR_BR, //screen Anchor
+						array(1,1,1), //scale
+						new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0, 90, 0)) //rotation
+				);
+				
+ArelXMLHelper::outputObject($legoWeapon);
 
-// Wrong request -> return not found
-header('HTTP/1.0 404 Not found');
+//occlusion model
+$box = ArelXMLHelper::create360Object(
+						"box", //id
+						"/resources/occlusionBox.zip", //model
+						NULL, 
+						array(0,0,-6400), //translation
+						array(50, 50, 50), //scale
+						new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(90, 0, 90)) //rotation
+				);
 
-function in_array_substr($needle, $haystack)
-{
-	foreach($haystack as $value)
-	{
-		if(strpos($value, $needle) !== false)
-			return true;
-	}
-	
-	return false;	
-}
+$box->setOccluding(true);
+
+ArelXMLHelper::outputObject($box);
+
+ArelXMLHelper::end();
+
+?>

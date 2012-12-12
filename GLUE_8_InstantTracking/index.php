@@ -17,38 +17,27 @@
  *  			
  **/
 
-define('WWW_ROOT', "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])); //path to online location
-
-require_once 'config.php';
+//use the Arel Helper to start the output with arel
 require_once '../ARELLibrary/arel_xmlhelper.class.php';
 
-if(isset($_GET['path']))
-	$path = $_GET['path'];
-else
-	$path = $_SERVER['REQUEST_URI'];
-	
-$aUrl = explode('/', $path);
+//start output
+ArelXMLHelper::start(NULL, "index.html", NULL);
 
-if(in_array('pois', $aUrl))
-{
-	//the visual search request holds the image
-	if(in_array_substr('search', $aUrl))
-	{
-		include 'search.php';
-		exit;
-	}
-}
+//return the metaio man on coordinate system 1 / reference image 1
+$oObject = ArelXMLHelper::createGLUEModel3D(
+		"1",	//ID 
+	"http://dev.junaio.com/publisherDownload/tutorial/metaioman.md2", //model Path 
+	"http://dev.junaio.com/publisherDownload/tutorial/metaioman.png", //texture Path
+	array(0,0,0), //translation
+	array(3,3,3), //scale
+	new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0,0,0)), //rotation
+	1 //CoordinateSystemID
+);
 
-// Wrong url
-header('HTTP/1.0 404 Not found');
+//output the object
+ArelXMLHelper::outputObject($oObject);
 
-function in_array_substr($needle, $haystack)
-{
-	foreach($haystack as $value)
-	{
-		if(strpos($value, $needle) !== false)
-			return true;
-	}
-	
-	return false;	
-}
+//end the output
+ArelXMLHelper::end();
+
+?>

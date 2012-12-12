@@ -13,39 +13,54 @@
  *  			
  **/
 
-//if issues occur with htaccess, also the path variable can be used
-//htaccess rewrite enabled:
-//Callback URL: http://www.callbackURL.com
-//
-//htacces disabled:
-//Callback URL: http://www.callbackURL.com/?path=
+require_once '../ARELLibrary/arel_xmlhelper.class.php';
 
-if(isset($_GET['path']))
-	$path = $_GET['path'];
+if(!empty($_GET['l']))
+    $position = explode(",", $_GET['l']);
 else
-	$path = $_SERVER['REQUEST_URI'];
-	
-$aUrl = explode('/', $path);
+    trigger_error("user position (l) missing. For testing, please provide a 'l' GET parameter with your request. e.g. pois/search/?l=23.34534,11.56734,0");
+ 
+//calculate the position of T-Rex based on the position of the request. An offset is added to the latitude value.
+$tRexLocation = $position;
+$tRexLocation[0] += 0.00004;
 
-//if the request if correct, return the information
-if(in_array_substr('search', $aUrl))
-{
-	//the search return needs to be provided
-	include 'search.php';
-	exit;
-}	
+//metaio man location
+$metaioManLocation = $position;
+$metaioManLocation[1] += 0.00004;
 
+//use the Arel Helper to start the output with arel
+//start output
+ArelXMLHelper::start();
 
-// Wrong request -> return not found
-header('HTTP/1.0 404 Not found');
+//T-Rex as static obj
+$oObject = ArelXMLHelper::createLocationBasedModel3D(
+		"trex", //ID
+		"The T-Rex", //name
+		"http://dev.junaio.com/publisherDownload/junaio_model_obj.zip", //model 
+		NULL, //texture
+		$tRexLocation, //position
+		array(5,5,5), //scale
+		new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0,-90,0)) //rotation
+);
 
-function in_array_substr($needle, $haystack)
-{
-	foreach($haystack as $value)
-	{
-		if(strpos($value, $needle) !== false)
-			return true;
-	}
-	
-	return false;	
-}
+ArelXMLHelper::outputObject($oObject);
+
+//metiao man md2
+$oObject = ArelXMLHelper::createLocationBasedModel3D(
+		"metaioMan", //ID
+		"The metaio Man", //name
+		"http://dev.junaio.com/publisherDownload/tutorial/metaioman.md2", //model 
+		"http://dev.junaio.com/publisherDownload/tutorial/metaioman.png", //texture
+		$metaioManLocation, //position
+		array(20,20,20), //scale
+		new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0,0,-90)) //rotation
+);
+		
+
+//output the object
+ArelXMLHelper::outputObject($oObject);
+
+//end the output
+ArelXMLHelper::end();
+
+?>

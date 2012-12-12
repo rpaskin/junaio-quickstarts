@@ -2,7 +2,7 @@
 /**
  * @copyright  Copyright 2012 metaio GmbH. All rights reserved.
  * @link       http://www.metaio.com
- * @author     Frank Angermann
+ * @author     Nicolas King
  * 
  * @abstract	This tutorial gives you a basic understanding of image recogination with junaio and working with animated md2 models. 
  * 				You will need the metaio man image.
@@ -15,41 +15,11 @@
  * 					- start an animation based on animation ended event of the object 
  **/
 
-//if issues occur with htaccess, also the path variable can be used
-//htaccess rewrite enabled:
-//Callback URL: http://www.callbackURL.com
-//
-//htacces disabled:
-//Callback URL: http://www.callbackURL.com/?path=
+require_once '../ARELLibrary/arel_xmlhelper.class.php';
+ 
+//use the Arel Helper to start the output with arel
+//start output
+ArelXMLHelper::start(NULL, "arel/index.html", "http://www.junaio.com/publisherDownload/tutorial/tracking_tutorial.zip");
 
-if(isset($_GET['path']))
-	$path = $_GET['path'];
-else
-	$path = $_SERVER['REQUEST_URI'];
-	
-$aUrl = explode('/', $path);
-
-//if the request if correct, return the information
-if(in_array_substr('search', $aUrl))
-{
-	define('WWW_ROOT', "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])); //path to online location
-	
-	//the search return needs to be provided
-	include 'search.php';
-	exit;
-}	
-
-
-// Wrong request -> return not found
-header('HTTP/1.0 404 Not found');
-
-function in_array_substr($needle, $haystack)
-{
-	foreach($haystack as $value)
-	{
-		if(strpos($value, $needle) !== false)
-			return true;
-	}
-	
-	return false;	
-}
+//end the output
+ArelXMLHelper::end();

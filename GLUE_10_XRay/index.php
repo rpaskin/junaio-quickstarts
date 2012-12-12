@@ -5,42 +5,102 @@
  * @author     Nicolas King
  **/
 
-//error_reporting(E_ALL);
-//ini_set('display_errors', '1');
+error_reporting(E_ALL);			//for displaying errors
+ini_set("display_errors", 1);
 
-require_once 'config.php';
+require_once '../ARELLibrary/arel_xmlhelper.class.php';
 
-//WWW_ROOT will hold the path to the html folder -> makes resource referencing easier later on
- //path to online location
-//define('CHANNELS_PATH', dirname(dirname(dirname(__FILE__)))); // path to channels
- // path to channels
+$trackingXML = "http://dev.junaio.com/publisherDownload/tutorial/tracking_tutorial.zip";
+$arelPath = "";
+		
+ArelXMLHelper::start(NULL,$arelPath,$trackingXML);
 
-if(isset($_GET["path"]))
-	$path = $_GET["path"];
-else
-	$path = $_SERVER["REQUEST_URI"];
 
-$aUrl = explode("/", $path);
+//Relative to Screen Overlay
 
-if(in_array("pois", $aUrl))
-{
-	if(in_array_substr("search", $aUrl))
-	{
-		include "search.php";
-		exit;
-	}
-}
+$id = "overlay";
+$model = "/resources/overlay.zip";
+$texture = "";
+$screenCoordinates = ArelAnchor::ANCHOR_CC;
+$scale = array(20,20,20);
+$rotation = array(0,0,0);
 
-// Wrong url
-header("HTTP/1.0 404 Not found");
+$oObject = ArelXMLHelper::createScreenFixedModel3D(	$id,
+													$model,
+													$texture,
+													$screenCoordinates,
+													$scale,
+													new ArelRotation(ArelRotation::ROTATION_EULERDEG, $rotation)
+												);	
+			
+$oObject->setOccluding(true);
 
-function in_array_substr($needle, $haystack)
-{
-	foreach($haystack as $value)
-	{
-		if(strpos($value, $needle) !== false)
-			return true;
-	}
+ArelXMLHelper::outputObject($oObject);
 
-	return false;
-}
+
+//Relative to Screen Frame
+
+$id = "frame";
+$model = "/resources/frame.zip";
+$texture = "";
+$screenCoordinates = ArelAnchor::ANCHOR_CC;
+//$scale = array(3.5,3.5,3.5);
+$rotation = array(0,0,0);
+
+$oObject = ArelXMLHelper::createScreenFixedModel3D(	$id,
+													$model,
+													$texture,
+													$screenCoordinates,
+													$scale,
+													new ArelRotation(ArelRotation::ROTATION_EULERDEG, $rotation)
+												);	
+
+$oObject->setScreenAnchorFlag(0);
+												
+ArelXMLHelper::outputObject($oObject);
+
+// metaio man
+
+$id = "metaioman"; 
+$model = "/resources/metaioman_xray.zip";  
+$texture = "";  
+$translation = array(0,0,0);  
+$scale = array(50,50,50);
+$rotation = array(0,0,0); 
+$coordinateSystemID = 1;
+
+$oObject = ArelXMLHelper::createGLUEModel3D(	$id,
+											$model,
+											$texture,
+											$translation,
+											$scale,
+											new ArelRotation(ArelRotation::ROTATION_EULERDEG, $rotation),
+											$coordinateSystemID 
+										);
+									
+ArelXMLHelper::outputObject($oObject);
+
+// plain
+
+$id = "plain"; 
+$model = "/resources/plain.zip";  
+$texture = "";  
+$translation = array(0.5,0.5,-10000);  
+$scale = array(10000,10000,10000);  
+$rotation = array(0,0,0); 
+$coordinateSystemID = 1;
+
+$oObject = ArelXMLHelper::createGLUEModel3D(	$id,
+											$model,
+											$texture,
+											$translation,
+											$scale,
+											new ArelRotation(ArelRotation::ROTATION_EULERDEG, $rotation),
+											$coordinateSystemID 
+										);
+		
+ArelXMLHelper::outputObject($oObject);
+
+ArelXMLHelper::end();
+
+?>

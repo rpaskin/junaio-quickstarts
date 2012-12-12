@@ -15,41 +15,38 @@
  * 					- start an animation based on animation ended event of the object 
  **/
 
-//if issues occur with htaccess, also the path variable can be used
-//htaccess rewrite enabled:
-//Callback URL: http://www.callbackURL.com
-//
-//htacces disabled:
-//Callback URL: http://www.callbackURL.com/?path=
+require_once '../ARELLibrary/arel_xmlhelper.class.php';
+ 
+/**
+ * When the channel is being viewed, a poi request will be sent
+ * $_GET['l']...(optional) Position of the user when requesting poi search information
+ * $_GET['o']...(optional) Orientation of the user when requesting poi search information
+ * $_GET['p']...(optional) perimeter of the data requested in meters.
+ * $_GET['uid']... Unique user identifier
+ * $_GET['m']... (optional) limit of to be returned values
+ * $_GET['page']...page number of result. e.g. m = 10: page 1: 1-10; page 2: 11-20, e.g.
+ **/
+ 
+//use the Arel Helper to start the output with arel
 
-if(isset($_GET['path']))
-	$path = $_GET['path'];
-else
-	$path = $_SERVER['REQUEST_URI'];
-	
-$aUrl = explode('/', $path);
+//start output
+ArelXMLHelper::start(NULL, "/arel/index.html", "http://www.junaio.com/publisherDownload/tutorial/tracking_tutorial.zip");
 
-//if the request if correct, return the information
-if(in_array_substr('search', $aUrl))
-{
-	define('WWW_ROOT', "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])); //path to online location
-	
-	//the search return needs to be provided
-	include 'search.php';
-	exit;
-}	
+//return the metaio man on coordinate system 1 / reference image 1
+$oObject = ArelXMLHelper::createGLUEModel3D(
+		"1",	//ID 
+	"http://dev.junaio.com/publisherDownload/tutorial/metaioman.md2", //model Path 
+	"http://dev.junaio.com/publisherDownload/tutorial/metaioman.png", //texture Path
+	array(0,-100,0), //translation
+	array(3,3,3), //scale
+	new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(-90,0,0)), //rotation
+	1 //CoordinateSystemID
+);
 
+//output the object
+ArelXMLHelper::outputObject($oObject);
 
-// Wrong request -> return not found
-header('HTTP/1.0 404 Not found');
+//end the output
+ArelXMLHelper::end();
 
-function in_array_substr($needle, $haystack)
-{
-	foreach($haystack as $value)
-	{
-		if(strpos($value, $needle) !== false)
-			return true;
-	}
-	
-	return false;	
-}
+?>

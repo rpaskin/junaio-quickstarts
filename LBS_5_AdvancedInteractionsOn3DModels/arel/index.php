@@ -4,10 +4,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+		<script src="http://code.jquery.com/jquery-1.8.3.min.js" type="text/javascript"></script>
 		<script src="http://dev.junaio.com/arel/js/arel.js" type="text/javascript"></script>
-		<script src="js/logic_LBS5.js" type="text/javascript"></script>
-		<link href="css/styles.css" type="text/css" rel="stylesheet" />
+		<script src="logic_LBS5.js" type="text/javascript"></script>
+		<link href="styles.css" type="text/css" rel="stylesheet" />
 		<title>AREL LEGO DEMO</title>
 	</head>
 	<body>

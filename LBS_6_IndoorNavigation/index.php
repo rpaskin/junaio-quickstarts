@@ -12,43 +12,60 @@
  * 					- switching POIs visible on the fly
  **/
 
+require_once '../ARELLibrary/arel_xmlhelper.class.php';
 
-//if issues occur with htaccess, also the path variable can be used
-//htaccess rewrite enabled:
-//Callback URL: http://www.callbackURL.com
-//
-//htacces disabled:
-//Callback URL: http://www.callbackURL.com/?path=
+//make sure to provide the lla marker tracking configuration
+ArelXMLHelper::start(NULL, "arel/index.html", ArelXMLHelper::TRACKING_LLA_MARKER);
 
-if(isset($_GET['path']))
-	$path = $_GET['path'];
-else
-	$path = $_SERVER['REQUEST_URI'];
-	
-$aUrl = explode('/', $path);
+//first arrow
+$arrowObject = ArelXMLHelper::createLocationBasedModel3D(
+						"arrow1", //id
+						"Arrow", //name
+						"resources/arrow.zip", //model 
+						"resources/arrow.png", //texture
+						array(37.783248, -122.403244, 0), //location
+						array(600, 600, 600), //scale
+						new ArelRotation(ArelRotation::ROTATION_EULERRAD, array(1.57, 0, 2.37)) //rotation
+				);
 
-//if the request if correct, return the information
-if(in_array_substr('search', $aUrl))
-{
-	//this will be used for refreencing information in the search.php
-	define('WWW_ROOT', "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])); //path to online location
+//set the poi invisible in liveview, mapview/listview and radar
+$arrowObject->setVisibility(false, false, false);
+//move the arrow a little down
+$arrowObject->setTranslation(array(0,0,-1500));
+ArelXMLHelper::outputObject($arrowObject);				
 
-	//the search return needs to be provided
-	include 'search.php';
-	exit;
-}	
+//second arrow
+$arrowObject = ArelXMLHelper::createLocationBasedModel3D(
+						"arrow2", //id
+						"Arrow", //name
+						"resources/arrow.zip", //model 
+						"resources/arrow.png", //texture
+						array(37.783212, -122.403192, 0), //location
+						array(600, 600, 600), //scale
+						new ArelRotation(ArelRotation::ROTATION_EULERRAD, array(1.57, 0, 2.37)) //rotation
+				);
 
+//set the poi invisible in liveview, mapview/listview and radar
+$arrowObject->setVisibility(false, false, false);
+//move the arrow a little down
+$arrowObject->setTranslation(array(0,0,-1500));
+ArelXMLHelper::outputObject($arrowObject);	
 
-// Wrong request -> return not found
-header('HTTP/1.0 404 Not found');
+//1. Sound POI
+$oObject = ArelXMLHelper::createLocationBasedPOI(
+		"conf1", //id
+		"Conference Room 1", //title
+		array(37.783294, -122.403299, 0), //location
+		"resources/1.png", //thumb
+		"resources/1.png", //icon
+		"This is Conference Room 1 with many interesting sessions going on today.", //description
+		array() //buttons
+	);
 
-function in_array_substr($needle, $haystack)
-{
-	foreach($haystack as $value)
-	{
-		if(strpos($value, $needle) !== false)
-			return true;
-	}
-	
-	return false;	
-}
+//set the poi invisible in liveview, mapview/listview and radar
+$oObject->setVisibility(false, false, false);
+ArelXMLHelper::outputObject($oObject);	
+
+ArelXMLHelper::end();
+
+?>

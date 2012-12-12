@@ -5,9 +5,9 @@
     		var analyticsUser = "<?php echo $_GET['analyticsuser'];?>";
     	</script>
     	<script type="text/javascript" src="http://dev.junaio.com/arel/js/arel.js"></script>
-    	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-    	<script type="text/javascript" src="js/arel_plugin_analytics_v1_2.js"></script>  
-    	<script type="text/javascript" src="js/logic_More1.js"></script>
+    	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    	<script type="text/javascript" src="arel_plugin_analytics_v1_2.js"></script>  
+    	<script type="text/javascript" src="logic_More1.js"></script>
     	    	
     	<style type="text/css">
 		* {

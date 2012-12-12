@@ -10,42 +10,36 @@
  * 					- how to use reflection maps
  **/
 
-//if issues occur with htaccess, also the path variable can be used
-//htaccess rewrite enabled:
-//Callback URL: http://www.callbackURL.com
-//
-//htacces disabled:
-//Callback URL: http://www.callbackURL.com/?path=
+require_once '../ARELLibrary/arel_xmlhelper.class.php';
 
-if(isset($_GET['path']))
-	$path = $_GET['path'];
-else
-	$path = $_SERVER['REQUEST_URI'];
-	
-$aUrl = explode('/', $path);
-
-//if the request if correct, return the information
-if(in_array_substr('search', $aUrl))
-{
-	//this will be used for refreencing information in the search.php
-	define('WWW_ROOT', "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])); //path to online location
-	
-	//the search return needs to be provided
-	include 'search.php';
-	exit;
-}	
+//use the Arel Helper to start the output with arel
 
 
-// Wrong request -> return not found
-header('HTTP/1.0 404 Not found');
+/**
+ * 	For more information about using reflection map, please look at those pages:
+ * 	
+ * 	http://docs.metaio.com/bin/view/Main/EnvironmentMapping
+ *  http://dev.metaio.com/sdk/tutorials/content-types/
+ * 
+ */
 
-function in_array_substr($needle, $haystack)
-{
-	foreach($haystack as $value)
-	{
-		if(strpos($value, $needle) !== false)
-			return true;
-	}
-	
-	return false;	
-}
+//start output
+ArelXMLHelper::start(NULL, NULL, "http://www.junaio.com/publisherDownload/tutorial/tracking_tutorial.zip");
+
+//output the truck with reflection maps included
+$oObject = ArelXMLHelper::createGLUEModel3D(
+											"1",	//ID 
+											"truck.zip", //model Path 
+											NULL, //texture Path
+											array(0,0,0), //translation
+											array(1,1,1), //scale
+											new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(90,0,0)), //rotation
+											1 //CoordinateSystemID
+										);
+//output the object
+ArelXMLHelper::outputObject($oObject);
+
+//end the output
+ArelXMLHelper::end();
+
+?>

@@ -15,42 +15,33 @@
  * 					- move the lego guy based on JS timers
  **/
 
-//if issues occur with htaccess, also the path variable can be used
-//htaccess rewrite enabled:
-//Callback URL: http://www.callbackURL.com
-//
-//htacces disabled:
-//Callback URL: http://www.callbackURL.com/?path=
 
-if(isset($_GET['path']))
-	$path = $_GET['path'];
+require_once '../ARELLibrary/arel_xmlhelper.class.php';
+ 
+if(!empty($_GET['l']))
+    $position = explode(",", $_GET['l']);
 else
-	$path = $_SERVER['REQUEST_URI'];
-	
-$aUrl = explode('/', $path);
+    trigger_error("user position (l) missing. For testing, please provide a 'l' GET parameter with your request. e.g. pois/search/?l=23.34534,11.56734,0");
+ 
+//start the xml output
+ArelXMLHelper::start(NULL, "arel/index.php");
 
-//if the request if correct, return the information
-if(in_array_substr('search', $aUrl))
-{
-	//this will be used for refreencing information in the search.php
-	define('WWW_ROOT', "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])); //path to online location
+//return the lego man 
+$oLegoMan = ArelXMLHelper::createLocationBasedModel3D(
+	"1", // id
+	"lego man", //title
+	"resources/walking_model3_7fps.zip", // mainresource
+	"resources/walking_model.png", // resource
+	$position, // location
+	array(0.2, 0.2, 0.2), // scale
+	new ArelRotation(ArelRotation::ROTATION_EULERRAD, array(1.57,0,1.57)) // rotation
+);
 
-	//the search return needs to be provided
-	include 'search.php';
-	exit;
-}	
+//set a translation offset for the lego man, based on the current users position
+$oLegoMan->setTranslation(array(0,1000,0));
 
+//return the model and end the output
+ArelXMLHelper::outputObject($oLegoMan);
+ArelXMLHelper::end();
 
-// Wrong request -> return not found
-header('HTTP/1.0 404 Not found');
-
-function in_array_substr($needle, $haystack)
-{
-	foreach($haystack as $value)
-	{
-		if(strpos($value, $needle) !== false)
-			return true;
-	}
-	
-	return false;	
-}
+?>

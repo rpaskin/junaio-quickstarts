@@ -15,43 +15,71 @@
  *  			
  **/
 
-//if issues occur with htaccess, also the path variable can be used
-//htaccess rewrite enabled:
-//Callback URL: http://www.callbackURL.com
-//
-//htacces disabled:
-//Callback URL: http://www.callbackURL.com/?path=
+require_once '../ARELLibrary/arel_xmlhelper.class.php';
 
-if(isset($_GET['path']))
-	$path = $_GET['path'];
-else
-	$path = $_SERVER['REQUEST_URI'];
+//use the Arel Helper to start the output with arel
+//start output
+ArelXMLHelper::start(NULL, "/arel/index.html");
+
+//1. Sound POI
+$oObject = ArelXMLHelper::createLocationBasedPOI(
+		"1", //id
+		"Hello Sound POI", //title
+		array(48.12310, 11.218648, 0), //location
+		"/resources/thumb_sound.png", //thumb
+		"/resources/icon_sound.png", //icon
+		"This is our Sound POI", //description
+		array(array("Start Audio", "soundButton", "http://www.junaio.com/publisherDownload/tutorial/test.mp3")) //buttons
+	);
+
+//output the object
+ArelXMLHelper::outputObject($oObject);
+
+//2. Image POI
+$oObject = ArelXMLHelper::createLocationBasedPOI(
+		"2", //id
+		"Hello Image POI", //title
+		array(48.12325, 11.218691, 0), //location
+		"/resources/thumb_image.png", //thumb
+		"/resources/icon_image.png", //icon
+		"This is our Image POI\n\nThe image source is: http://www.flickr.com/photos/ediamjunaio/5206110815/", //description
+		array(array("Show Image", "imageButton", "http://farm5.static.flickr.com/4104/5206110815_7ea891be0b.jpg")) //buttons
+	);
+
+//output the object
+ArelXMLHelper::outputObject($oObject);
+
+//3. Video POI
+$oObject = ArelXMLHelper::createLocationBasedPOI(
+		"3", //id
+		"Hello Video POI", //title
+		array(48.12307, 11.218636, 0), //location
+		"/resources/thumb_video.png", //thumb
+		"/resources/icon_video.png", //icon
+		"This is our Video POI", //description
+		array(array("Start Movie", "movieButton", "http://www.junaio.com/publisherDownload/tutorial/movie.mp4")) //buttons
+	);
+
+//output the object
+ArelXMLHelper::outputObject($oObject);
+
+//4. Custom POPup POI
+$oObject = ArelXMLHelper::createLocationBasedPOI(
+		"4", //id
+		"Custom PopUp", //title
+		array(48.12317,11.218670,0), //location
+		"/resources/thumb_custom.png", //thumb
+		"/resources/icon_custom.png" //icon		
+	);
+
+//add some parameters we will need with AREL
+$oObject->addParameter("description", "This is my special POI. It will do just what I want.");
+$oObject->addParameter("url", "http://www.junaio.com");
 	
-$aUrl = explode('/', $path);
+//output the object
+ArelXMLHelper::outputObject($oObject);
 
-//if the request if correct, return the information
-if(in_array_substr('search', $aUrl))
-{
-	//define the public path
-	//this will be used for refreencing information in the search.php
-	define('WWW_ROOT', "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])); //path to online location
+//end the output
+ArelXMLHelper::end();
 
-	//the search return needs to be provided
-	include 'search.php';
-	exit;
-}	
-
-
-// Wrong request -> return not found
-header('HTTP/1.0 404 Not found');
-
-function in_array_substr($needle, $haystack)
-{
-	foreach($haystack as $value)
-	{
-		if(strpos($value, $needle) !== false)
-			return true;
-	}
-	
-	return false;	
-}
+?>

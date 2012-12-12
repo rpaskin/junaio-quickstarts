@@ -10,43 +10,31 @@
  * 					- use create360Object in the Arel XML Helper
  **/
 
-
-//if issues occur with htaccess, also the path variable can be used
-//htaccess rewrite enabled:
-//Callback URL: http://www.callbackURL.com
-//
-//htacces disabled:
-//Callback URL: http://www.callbackURL.com/?path=
-
-if(isset($_GET['path']))
-	$path = $_GET['path'];
+require_once '../ARELLibrary/arel_xmlhelper.class.php';
+ 
+if(!empty($_GET['l']))
+    $position = explode(",", $_GET['l']);
 else
-	$path = $_SERVER['REQUEST_URI'];
-	
-$aUrl = explode('/', $path);
+    trigger_error("user position (l) missing. For testing, please provide a 'l' GET parameter with your request. e.g. pois/search/?l=23.34534,11.56734,0");
+ 
+ArelXMLHelper::start(NULL);
 
-//if the request if correct, return the information
-if(in_array_substr('search', $aUrl))
-{
-	//this will be used for refreencing information in the search.php
-	define('WWW_ROOT', "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])); //path to online location
+//first arrow
+$object360 = ArelXMLHelper::create360Object(
+						"360", //id
+						"/resources/360_new.zip", //model 
+						"/resources/photo.JPG", //texture
+						array(0,0,-1500), //translation
+						array(40000, 40000, 40000), //scale
+						new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(90, 0, 0)) //rotation
+				);
 
-	//the search return needs to be provided
-	include 'search.php';
-	exit;
-}	
+//make sure the object is always rendered first. small number == draw first
+//not necessary here, but might be important if you have other 360objects with transparency in the scene
+$object360->setRenderOrderPosition(-1000);
+				
+ArelXMLHelper::outputObject($object360);				
 
+ArelXMLHelper::end();
 
-// Wrong request -> return not found
-header('HTTP/1.0 404 Not found');
-
-function in_array_substr($needle, $haystack)
-{
-	foreach($haystack as $value)
-	{
-		if(strpos($value, $needle) !== false)
-			return true;
-	}
-	
-	return false;	
-}
+?>
