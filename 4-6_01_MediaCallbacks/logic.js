@@ -9,6 +9,33 @@ arel.sceneReady(function()
 	//arel.Debug.activate();
 	//arel.Debug.deactivateArelLogStream();
 	
+	//Tell the user which tracking patter he/she should use if the tracking didn't start yet
+	arel.Events.setListener(arel.Scene, function(type, param){
+
+		if(param[0] !== undefined)
+		{
+			//if the pattern is found, hide the information to hold your phone over the pattern
+			if(type && type == arel.Events.Scene.ONTRACKING && param[0].getState() == arel.Tracking.STATE_TRACKING)
+			{
+				$('#info').hide();
+			}
+			//if the pattern is lost tracking, show the information to hold your phone over the pattern
+			else if(type && type == arel.Events.Scene.ONTRACKING && param[0].getState() == arel.Tracking.STATE_NOTTRACKING)
+			{
+				$('#info').show();
+			}
+		}
+	
+	});
+	
+	//if the user holds the device over the pattern already, when the scene starts
+	arel.Scene.getTrackingValues(function(trackingValues){
+
+		if(trackingValues[0] === undefined)
+			$('#info').show();
+	
+	});
+	
 	//Set a EventListener to the object
 	arel.Events.setListener(arel.Scene.getObject("playMovie"),
 	function(obj, type, params)
@@ -68,6 +95,7 @@ function movieTexture()
 		}
 	}
 
+	//Controle the Tracking for pause or resume the Movie Texture
 	this.startSceneHandler = function(type, param)
 	{
 		try
@@ -90,6 +118,7 @@ function movieTexture()
 	this.init();
 };
 
+//Create a Fullscreen and react on the callback
 function fullscreenMovie()
 {
 	this.init = function()
@@ -120,6 +149,7 @@ function fullscreenMovie()
 	this.init();
 };
 
+//Start a sound and react on the callback
 function soundFile()
 {
 	this.init = function()
@@ -179,6 +209,7 @@ function soundFile()
 	this.init();
 };
 
+//Open a website and react on the close callback
 function webSite()
 {
 	this.init = function()
@@ -224,6 +255,7 @@ function webSite()
 	this.init();
 };
 
+//Creates a 3D Modell with ontouchstart event for restarting the channel
 function restart()
 {
 	this.init = function()

@@ -17,7 +17,7 @@ arel.sceneReady(function()
 function restart(button)
 {
 	button.style.backgroundColor='#fff';
-	
+	//restart the channel
 	arel.Scene.switchChannel(oMemory.channelID);
 }
 
