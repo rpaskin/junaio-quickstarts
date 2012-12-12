@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results trackingurl="http://dev.junaio.com/publisherDownload/tutorial/tracking_tutorial.zip">
+	<object id="overlay">
+		<assets3d>
+			<model><![CDATA[/resources/overlay.zip]]></model>
+			<transform>
+				<translation>
+					<x>0</x><y>0</y><z>-51</z>
+				</translation>
+				<rotation type="eulerdeg">
+					<x>0</x><y>0</y><z>0</z>
+				</rotation>
+				<scale>
+					<x>2</x><y>2</y><z>2</z>
+				</scale>
+			</transform>
+			<properties>
+				<coordinatesystemid>0</coordinatesystemid>
+				<occluding>true</occluding>
+			</properties>
+		</assets3d>
+	</object>
+	<object id="frame">
+		<assets3d>
+			<model><![CDATA[/resources/frame.zip]]></model>
+			<transform>
+				<translation>
+					<x>0</x><y>0</y><z>-51</z>
+				</translation>
+				<rotation type="eulerdeg">
+					<x>0</x><y>0</y><z>0</z>
+				</rotation>
+				<scale>
+					<x>2</x><y>2</y><z>2</z>
+				</scale>
+			</transform>
+			<properties>
+				<coordinatesystemid>0</coordinatesystemid>
+			</properties>
+		</assets3d>
+	</object>
+	<object id="metaioman">
+		<assets3d>
+			<model><![CDATA[/resources/metaioman_xray.zip]]></model>
+			<transform>
+				<translation>
+					<x>0</x><y>0</y><z>0</z>
+				</translation>
+				<rotation type="eulerdeg">
+					<x>0</x><y>0</y><z>0</z>
+				</rotation>
+				<scale>
+					<x>50</x><y>50</y><z>50</z>
+				</scale>
+			</transform>
+			<properties>
+				<coordinatesystemid>1</coordinatesystemid>
+			</properties>
+		</assets3d>
+	</object>
+	<object id="plain">
+		<assets3d>
+			<model><![CDATA[/resources/plain.zip]]></model>
+			<transform>
+				<translation>
+					<x>0.5</x><y>0.5</y><z>-10000</z>
+				</translation>
+				<rotation type="eulerdeg">
+					<x>0</x><y>0</y><z>0</z>
+				</rotation>
+				<scale>
+					<x>10000</x><y>10000</y><z>10000</z>
+				</scale>
+			</transform>
+			<properties>
+				<coordinatesystemid>1</coordinatesystemid>
+			</properties>
+		</assets3d>
+	</object>
+</results>
