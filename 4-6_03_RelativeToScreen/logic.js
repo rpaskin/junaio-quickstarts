@@ -8,6 +8,7 @@ arel.sceneReady(function()
 	var ammunition = arel.Object.Model3D.createFromImage("ammo", "bullet3.jpg");
 	//Set the ScreenAnchor to Top-Right
 	ammunition.setScreenAnchor(arel.Constants.ANCHOR_TR);
+	ammunition.setTranslation(new arel.Vector3D(0,-40,0));
 	//Add the new Object to the Scene
 	arel.Scene.addObject(ammunition);
 });
