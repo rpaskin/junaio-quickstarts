@@ -29,7 +29,7 @@ $oObject = ArelXMLHelper::createLocationBasedPOI(
 		"/resources/thumb_sound.png", //thumb
 		"/resources/icon_sound.png", //icon
 		"This is our Sound POI", //description
-		array(array("Start Audio", "soundButton", "http://www.junaio.com/publisherDownload/tutorial/test.mp3")) //buttons
+		array() //buttons
 	);
 
 //output the object
