@@ -99,4 +99,12 @@ abstract class ArelAnchor
      * Do not scale geometry according to the screen resolution
      */
     const FLAG_IGNORE_SCREEN_RESOLUTION =	4;
+	/**
+	 * scale model to be same physical size on all displays
+	 */
+	const FLAG_MATCH_DISPLAY = 4;
+	/**
+	 * Autoscale geometries according to the screen
+	 */
+	const FLAG_AUTOSCALE = 8;
 }
