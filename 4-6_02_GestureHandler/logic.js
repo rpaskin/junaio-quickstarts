@@ -8,21 +8,21 @@ arel.sceneReady(function()
 });
 
 //This function will check the user click and if the gesture handling is activated or not
-function onButtonPushed()
+function onButtonPushed(number)
 {
     if( objectIsAdded )
     {
-        arel.GestureHandler.removeObject( "1" );
+        arel.GestureHandler.removeObject( number,  number);
         objectIsAdded = false;
-        document.getElementById("thebutton").innerText = "Enable gestures";
+        document.getElementById("thebutton"+number).innerText = "Enable gestures";
     }
     else
     {
     	//This function will add your object with the id "1" to the gesture handler
     	//This will acitvate the gesture handling for your object
-        arel.GestureHandler.addObject( "1" );
+        arel.GestureHandler.addObject( number, number );
         objectIsAdded = true;
-        document.getElementById("thebutton").innerText = "Disable gestures";
+        document.getElementById("thebutton"+number).innerText = "Disable gestures";
 
         //Add an EventListener to get the gesture events
         arel.Events.setListener(arel.GestureHandler, function(type, groupID, objects){

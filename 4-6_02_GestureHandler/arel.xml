@@ -27,4 +27,56 @@
         </properties>
     </assets3d>
 </object>
+<object id="2">
+    <assets3d>
+        <model><![CDATA[resources/metaioman.zip]]></model>
+        <texture><![CDATA[resources/metaiomanBlue.png]]></texture>
+        <transform>
+            <translation>
+                <x>100</x>
+                <y>0</y>
+                <z>0</z>
+            </translation>
+            <rotation type="eulerdeg">
+                <x>0</x>
+                <y>0</y>
+                <z>0</z>
+            </rotation>
+            <scale>
+                <x>3</x>
+                <y>3</y>
+                <z>3</z>
+            </scale>
+        </transform>
+        <properties>
+            <coordinatesystemid>1</coordinatesystemid>
+        </properties>
+    </assets3d>
+</object>
+<object id="3">
+    <assets3d>
+        <model><![CDATA[resources/metaioman.zip]]></model>
+        <texture><![CDATA[resources/metaiomanGreen.png]]></texture>
+        <transform>
+            <translation>
+                <x>-100</x>
+                <y>0</y>
+                <z>0</z>
+            </translation>
+            <rotation type="eulerdeg">
+                <x>0</x>
+                <y>0</y>
+                <z>0</z>
+            </rotation>
+            <scale>
+                <x>3</x>
+                <y>3</y>
+                <z>3</z>
+            </scale>
+        </transform>
+        <properties>
+            <coordinatesystemid>1</coordinatesystemid>
+        </properties>
+    </assets3d>
+</object>
 </results>
