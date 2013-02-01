@@ -15,7 +15,20 @@ arel.sceneReady(function()
 	
 	//set a listener on the metaio man
 	arel.Events.setListener(metaioman, function(obj, type, params){handleMetaioManEvents(obj, type, params);});
-	
+
+    //write the tracking counter from the localstorage into an HTML Div-Container
+    if(typeof(Storage)!=="undefined")
+    {
+        if (!localStorage.glue2LocalCounter)
+        {
+            localStorage.glue2LocalCounter=1;
+        }
+        $("#localNumber").html("You tracked the metaio man pattern: "+ localStorage.glue2LocalCounter + " times");
+    }
+    else
+    {
+        $("#localNumber").html("Sorry, your browser does not support web storage...");
+    }
 });
 
 function trackingHandler(type, param)
@@ -27,6 +40,24 @@ function trackingHandler(type, param)
 		if(type && type == arel.Events.Scene.ONTRACKING && param[0].getState() == arel.Tracking.STATE_TRACKING)
 		{
 			$('#info').hide();
+
+            //Increase the localstorage counter
+            if(typeof(Storage)!=="undefined")
+            {
+                if (localStorage.glue2LocalCounter)
+                {
+                    localStorage.glue2LocalCounter=Number(localStorage.glue2LocalCounter)+1;
+                }
+                else
+                {
+                    localStorage.glue2LocalCounter=1;
+                }
+                $("#localNumber").html("You tracked the metaio man pattern: "+ localStorage.glue2LocalCounter + " times");
+            }
+            else
+            {
+                $("#localNumber").html("Sorry, your browser does not support web storage...");
+            }
 		}
 		//if the pattern is lost tracking, show the information to hold your phone over the pattern
 		else if(type && type == arel.Events.Scene.ONTRACKING && param[0].getState() == arel.Tracking.STATE_NOTTRACKING)
