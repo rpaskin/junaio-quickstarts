@@ -5,4 +5,4 @@ This repository contains quickstart tutorials for the Augmented Reality Browser 
 
 ## Further documentation
 
-You can find further documentation and information [here](http://www.junaio.com/develop/quickstart/)
+You can find further documentation and information [here](http://dev.metaio.com/junaio/quickstarts/)
