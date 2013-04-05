@@ -19,7 +19,7 @@ require_once '../ARELLibrary/arel_xmlhelper.class.php';
 
 //use the Arel Helper to start the output with arel
 //start output
-ArelXMLHelper::start(NULL, "/arel/index.html");
+ArelXMLHelper::start(NULL, "/arel/index.html", ArelXMLHelper::TRACKING_GPS);
 
 //1. Sound POI
 $oObject = ArelXMLHelper::createLocationBasedPOI(
@@ -69,13 +69,27 @@ $oObject = ArelXMLHelper::createLocationBasedPOI(
 		"Custom PopUp", //title
 		array(48.12317,11.218670,0), //location
 		"/resources/thumb_custom.png", //thumb
-		"/resources/icon_custom.png" //icon		
+		"/resources/icon_custom.png", //icon
+        array()
 	);
 
 //add some parameters we will need with AREL
 $oObject->addParameter("description", "This is my special POI. It will do just what I want.");
 $oObject->addParameter("url", "http://www.junaio.com");
 	
+//output the object
+ArelXMLHelper::outputObject($oObject);
+
+//5. Phone Call POI
+$oObject = ArelXMLHelper::createLocationBasedPOI(
+    "5", //id
+    "Do Phone Call", //title
+    array(48.12302,11.218644,0), //location
+    "/resources/thumb_custom.png", //thumb
+    "/resources/icon_custom.png", //icon
+    array()
+);
+
 //output the object
 ArelXMLHelper::outputObject($oObject);
 

@@ -17,7 +17,7 @@ if(!empty($_GET['l']))
 else
     trigger_error("user position (l) missing. For testing, please provide a 'l' GET parameter with your request. e.g. pois/search/?l=23.34534,11.56734,0");
  
-ArelXMLHelper::start(NULL);
+ArelXMLHelper::start(NULL,NULL,"Orientation");
 
 //first arrow
 $object360 = ArelXMLHelper::create360Object(

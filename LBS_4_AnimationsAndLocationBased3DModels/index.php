@@ -37,7 +37,7 @@ $tRexLocation[0] += 0.00004;
 
 //use the Arel Helper to start the output with arel
 //start output
-ArelXMLHelper::start(NULL, "/arel/index.html");
+ArelXMLHelper::start(NULL, "/arel/index.html", ArelXMLHelper::TRACKING_GPS);
 
 //T-Rex as encrypted md2
 $oObject = ArelXMLHelper::createLocationBasedModel3D(

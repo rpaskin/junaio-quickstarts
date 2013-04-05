@@ -24,7 +24,7 @@ else
     trigger_error("user position (l) missing. For testing, please provide a 'l' GET parameter with your request. e.g. pois/search/?l=23.34534,11.56734,0");
  
 //start the xml output
-ArelXMLHelper::start(NULL, "arel/index.php");
+ArelXMLHelper::start(NULL, "arel/index.php", ArelXMLHelper::TRACKING_GPS);
 
 //return the lego man 
 $oLegoMan = ArelXMLHelper::createLocationBasedModel3D(

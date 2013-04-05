@@ -13,7 +13,7 @@ else
 	trigger_error("user position (l) missing. For testing, please provide a 'l' GET parameter with your request. e.g. pois/search/?l=23.34534,11.56734,0");
 
 //create the xml start
-ArelXMLHelper::start(NULL, "/arel/index.html");
+ArelXMLHelper::start(NULL, "/arel/index.html", ArelXMLHelper::TRACKING_GPS);
 
 //start by defining some positions of geo referenced POIs and give those names and thumbnails
 $treasureLocations = array(

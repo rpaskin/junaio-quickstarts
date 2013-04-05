@@ -30,7 +30,7 @@ $metaioManLocation[1] += 0.00004;
 
 //use the Arel Helper to start the output with arel
 //start output
-ArelXMLHelper::start();
+ArelXMLHelper::start(NULL,NULL, ArelXMLHelper::TRACKING_GPS);
 
 //T-Rex as static obj
 $oObject = ArelXMLHelper::createLocationBasedModel3D(
