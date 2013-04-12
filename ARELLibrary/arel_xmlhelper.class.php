@@ -114,7 +114,7 @@ class ArelXMLHelper
 	 * @param Array $buttons An array defining buttons to be shown in the pop up / detail display 
 	 
 	 */
-	static public function createLocationBasedPOI($id, $title, $location, $thumbnail, $icon, $description, $buttons)
+	static public function createLocationBasedPOI($id, $title, $location, $thumbnail, $icon, $description = NULL, $buttons = NULL)
 	{
 		$obj = new ArelObjectPoi($id);
 		$obj->setTitle($title);
