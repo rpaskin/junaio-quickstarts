@@ -26,7 +26,7 @@ $oObject = ArelXMLHelper::createGLUEModel3D(
 		"trex", //ID
 		"http://dev.junaio.com/publisherDownload/tutorial/trex.md2_enc", //model 
 		"http://dev.junaio.com/publisherDownload/tutorial/trextexture.png", //texture
-		array(3000,0,0), //1 meter in x direction
+		array(3000,0,-1300), //1 meter in x direction
 		array(3,3,3), //scale
 		new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0,0,0)),	//rotation
 		1
@@ -40,7 +40,7 @@ $oObject = ArelXMLHelper::createGLUEModel3D(
 		"metaioMan", //ID
 		"http://dev.junaio.com/publisherDownload/tutorial/metaioman.zip", //model 
 		NULL, //texture
-		array(2000, -800, 0), //position
+		array(2000, -700, -1300), //position
 		array(10,10,10), //scale
 		new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0,0,90)), //rotation
 		1
