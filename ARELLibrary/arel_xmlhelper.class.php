@@ -22,6 +22,11 @@ class ArelXMLHelper
 	const TRACKING_GPS = "GPS";
 	
 	/**
+	 * Tracking type Orientation 
+	 */
+	const TRACKING_ORIENTATION = "Orientation";
+	
+	/**
 	 * Tracking type LLA Marker 
 	 */
 	const TRACKING_LLA_MARKER = "LLA";
