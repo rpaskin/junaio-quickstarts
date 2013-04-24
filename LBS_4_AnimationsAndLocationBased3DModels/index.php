@@ -30,7 +30,6 @@ $oObject = ArelXMLHelper::createGLUEModel3D(
 		array(3,3,3), //scale
 		new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0,0,0)),	//rotation
 		1
-		) 
 );
 
 //output the trex
@@ -45,7 +44,6 @@ $oObject = ArelXMLHelper::createGLUEModel3D(
 		array(10,10,10), //scale
 		new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0,0,90)), //rotation
 		1
-		) 
 );
 
 //output the metaio man
