@@ -4,14 +4,13 @@
  * @link       http://www.metaio.com
  * @author     Frank Angermann
  * 
- * @abstract	Using Location Based 3D models in junaio and learn how to do animations with AREL JavaScript
+ * @abstract	Using 3D models in a 360 degree setting in junaio and learn how to do animations with AREL JavaScript
  * 				
  * 				Learnings:
- * 					- create two Location Based 3D Models using the Arel XML Helper
- * 					- place the t-rex and the metaio manbased on the user's position
- * 					- add a translation offset to the metaio man
+ * 					- create two 3D Models using the Arel XML Helper
+ * 					- place the t-rex and the metaio man relative to the user's position
  * 					- use 1 zipped md2 and an encrypted md2
- * 					- start animations using AREL JavaScript
+ * 					- start animations using AREL JavaScript and react to its callbacks
  **/
 
 require_once '../ARELLibrary/arel_xmlhelper.class.php';
