@@ -44,7 +44,6 @@ function handlePoiCallvent(obj, type, param)
     //check if there is tracking information available
     if(type && type === arel.Events.Object.ONTOUCHSTARTED)
     {
-        arel.Media.startSound("http://dev.junaio.com/publisherDownload/tutorial/test.mp3");
         arel.Media.openWebsite("tel:15400546165",true);
     }
 };
