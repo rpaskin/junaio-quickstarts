@@ -16,56 +16,37 @@
 
 require_once '../ARELLibrary/arel_xmlhelper.class.php';
  
-/**
- * When the channel is being viewed, a poi request will be sent
- * $_GET['l']...(optional) Position of the user when requesting poi search information
- * $_GET['o']...(optional) Orientation of the user when requesting poi search information
- * $_GET['p']...(optional) perimeter of the data requested in meters.
- * $_GET['uid']... Unique user identifier
- * $_GET['m']... (optional) limit of to be returned values
- * $_GET['page']...page number of result. e.g. m = 10: page 1: 1-10; page 2: 11-20, e.g.
- **/
-
-if(!empty($_GET['l']))
-    $position = explode(",", $_GET['l']);
-else
-    trigger_error("user position (l) missing. For testing, please provide a 'l' GET parameter with your request. e.g. pois/search/?l=23.34534,11.56734,0");
- 
-//calculate the position of T-Rex based on the position of the request. An offset is added to the latitude value.
-$tRexLocation = $position;
-$tRexLocation[0] += 0.00004;
-
 //use the Arel Helper to start the output with arel
 //start output
-ArelXMLHelper::start(NULL, "/arel/index.html", ArelXMLHelper::TRACKING_GPS);
+ArelXMLHelper::start(NULL, "/arel/index.html", ArelXMLHelper::TRACKING_ORIENTATION);
 
 //T-Rex as encrypted md2
-$oObject = ArelXMLHelper::createLocationBasedModel3D(
+// We are using relative offsets, so we don't need a location based model
+$oObject = ArelXMLHelper::createGLUEModel3D(
 		"trex", //ID
-		"The T-Rex", //name
 		"http://dev.junaio.com/publisherDownload/tutorial/trex.md2_enc", //model 
 		"http://dev.junaio.com/publisherDownload/tutorial/trextexture.png", //texture
-		$tRexLocation, //position
+		array(1000,0,0), //1 meter in x direction
 		array(3,3,3), //scale
-		new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0,0,0)) //rotation
+		new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0,0,0),	//rotation
+		1
+		) 
 );
 
 //output the trex
 ArelXMLHelper::outputObject($oObject);
 
 //metiao man zipped md2
-$oObject = ArelXMLHelper::createLocationBasedModel3D(
+$oObject = ArelXMLHelper::createGLUEModel3D(
 		"metaioMan", //ID
-		"The metaio Man", //name
 		"http://dev.junaio.com/publisherDownload/tutorial/metaioman.zip", //model 
 		NULL, //texture
-		$tRexLocation, //position
+		array(0, -800, 0), //position
 		array(10,10,10), //scale
-		new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0,0,90)) //rotation
+		new ArelRotation(ArelRotation::ROTATION_EULERDEG, array(0,0,90), //rotation
+		1
+		) 
 );
-		
-//set a translation as offset
-$oObject->setTranslation(array(-1000, -800, 0));
 
 //output the metaio man
 ArelXMLHelper::outputObject($oObject);
