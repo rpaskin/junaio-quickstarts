@@ -11,12 +11,7 @@
  **/
 
 require_once '../ARELLibrary/arel_xmlhelper.class.php';
- 
-if(!empty($_GET['l']))
-    $position = explode(",", $_GET['l']);
-else
-    trigger_error("user position (l) missing. For testing, please provide a 'l' GET parameter with your request. e.g. pois/search/?l=23.34534,11.56734,0");
- 
+
 ArelXMLHelper::start(NULL,NULL,"Orientation");
 
 //first arrow
