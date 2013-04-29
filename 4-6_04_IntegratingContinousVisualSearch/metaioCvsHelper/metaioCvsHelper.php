@@ -112,6 +112,44 @@ function addApplication($email, $password, $dbName, $appId)
 	return $return;
 }
 
+// Adds a Channel to the database
+function addChannel($email, $password, $dbName, $channelID)
+{
+    $errorMsg = "";
+    $postResponse = doPost
+	(
+        "addApplication.php",
+        array('timeout' => 15),
+        array
+		(
+            'email' => $email,
+            'password' => md5($email.$password),
+            'dbName' => $dbName,
+            'appIdentifier' => 'com.metaio.junaio',
+			'channelId' => $channelID
+        ),
+        $errorMsg
+    );
+	
+	    $postResponse = doPost
+	(
+        "addApplication.php",
+        array('timeout' => 15),
+        array
+		(
+            'email' => $email,
+            'password' => md5($email.$password),
+            'dbName' => $dbName,
+            'appIdentifier' => 'com.metaio.junaio-ipad',
+			'channelId' => $channelID
+        ),
+        $errorMsg
+    );
+	
+    $return = array($postResponse, $errorMsg);   
+	return $return;
+}
+
 // Deletes an existing Application from the database
 function deleteApplication($email, $password, $dbName, $appId)
 {
@@ -133,6 +171,43 @@ function deleteApplication($email, $password, $dbName, $appId)
 	return $return;
 }
 
+// Deletes a Channel from the database
+function deleteChannel($email, $password, $dbName, $channelID)
+{
+    $errorMsg = "";
+    $postResponse = doPost
+	(
+        "deleteApplication.php",
+        array('timeout' => 15),
+        array
+		(
+            'email' => $email,
+            'password' => md5($email.$password),
+            'dbName' => $dbName,
+            'appIdentifier' => 'com.metaio.junaio',
+			'channelId' => $channelID
+        ),
+        $errorMsg
+    );
+	
+	    $postResponse = doPost
+	(
+        "deleteApplication.php",
+        array('timeout' => 15),
+        array
+		(
+            'email' => $email,
+            'password' => md5($email.$password),
+            'dbName' => $dbName,
+            'appIdentifier' => 'com.metaio.junaio-ipad',
+			'channelId' => $channelID
+        ),
+        $errorMsg
+    );
+	
+    $return = array($postResponse, $errorMsg);   
+	return $return;
+}
 
 /**
  * Adds new TrackingDatas to the Database.
@@ -356,15 +431,23 @@ case "addApplication":
 	$password = trim(fgets(STDIN));
 	echo "\nPlease enter the name of your database!\n";
 	$dbName = trim(fgets(STDIN));
-	echo "\nPlease enter you Application ID!\n";
+	echo "\nPlease enter you Application or Channel ID!\n";
 	$appId = trim(fgets(STDIN));
 
-	$addDbResponse = addApplication($email, $password, $dbName, $appId);
-	$response = $addDbResponse[0];
-	// echo "\n".$response->getStatus();
-	// echo "\n".$response->getMessage();
-	// echo "\n".$response->getBody()."\n";
-	// var_dump($response);
+	if (is_numeric($appId)) 
+	{
+		$addDbResponse = addChannel($email, $password, $dbName, $appId);
+		$response = $addDbResponse[0];
+	} 
+	else 
+	{
+		$addDbResponse = addApplication($email, $password, $dbName, $appId);
+		$response = $addDbResponse[0];
+		// echo "\n".$response->getStatus();
+		// echo "\n".$response->getMessage();
+		// echo "\n".$response->getBody()."\n";
+		// var_dump($response);
+	}	
 
 	if(strlen($addDbResponse[1]) === 0)
 	{
@@ -372,7 +455,7 @@ case "addApplication":
 	   $myXml->getName();
 	   
 	   foreach($myXml as $tag)
-	   {
+	   {		
 			if(strcmp($tag->getName(),"Error") === 0)
 			{
 				echo "\n".$tag."\n";
@@ -404,16 +487,24 @@ case "deleteApplication":
 	$password = trim(fgets(STDIN));
 	echo "\nPlease enter the name of your database!\n";
 	$dbName = trim(fgets(STDIN));
-	echo "\nPlease enter you Application ID!\n";
+	echo "\nPlease enter you Application or Channel ID!\n";
 	$appId = trim(fgets(STDIN));
 
-	$addDbResponse = deleteApplication($email, $password, $dbName, $appId);
-	$response = $addDbResponse[0];
-	// echo "\n".$response->getStatus();
-	// echo "\n".$response->getMessage();
-	// echo "\n".$response->getBody()."\n";
-	// var_dump($response);
-
+	if (is_numeric($appId)) 
+	{
+		$addDbResponse = deleteChannel($email, $password, $dbName, $appId);
+		$response = $addDbResponse[0];
+	} 
+	else 
+	{
+		$addDbResponse = deleteApplication($email, $password, $dbName, $appId);
+		$response = $addDbResponse[0];
+		// echo "\n".$response->getStatus();
+		// echo "\n".$response->getMessage();
+		// echo "\n".$response->getBody()."\n";
+		// var_dump($response);
+	}	
+	
 	if(strlen($addDbResponse[1]) === 0)
 	{
 	   $myXml = new SimpleXMLElement($response->getBody());
@@ -424,14 +515,14 @@ case "deleteApplication":
 			if(strcmp($tag->getName(),"Error") === 0)
 			{
 				echo "\n".$tag."\n";
-				$msg = " ---- DELETING APLLICATION FAILED ---- ";
+				$msg = " ---- DELETING APLLICATION FROM CVS FAILED ---- ";
 				echo "\n$msg\n";
 			}	
 			else
 			{
-				$msg = "... Application $appId has been deleted.\n";
+				$msg = "... Application $appId has been deleted from the database $dbName.\n";
 				echo "\n$msg\n";
-				$msg = " ---- DELETING APLLICATION SUCCESSFULLY COMPLETED ---- ";
+				$msg = " ---- DELETING APLLICATION FROM CVS SUCCESSFULLY COMPLETED ---- ";
 				echo "\n$msg\n";
 			}
 		exit;
