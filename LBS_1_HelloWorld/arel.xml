@@ -5,14 +5,14 @@
 		<thumbnail><![CDATA[http://dev.junaio.com/publisherDownload/thumb_a1.png]]></thumbnail>
 		<icon><![CDATA[http://dev.junaio.com/publisherDownload/icon_a1.png]]></icon>
 		<location>
-			<lat>37.776685</lat>
-			<lon>-122.422771</lon>
+			<lat>-23.002023</lat>
+			<lon>-43.3199705</lon>
 			<alt>0</alt>
 		</location>
 		<popup>
-			<description><![CDATA[This is a beautiful, family hotel and restaurant, just around the corner. Special Dinner and Rooms available.]]></description>
+			<description><![CDATA[Escritórios da Globo.com no Cittá America, Barra da Tijuca, Rio de Janeiro.]]></description>
 			<buttons>
-				<button id="url" name="Website"><![CDATA[http://www.junaio.com]]></button>
+				<button id="url" name="Website"><![CDATA[http://http://globotv.globo.com]]></button>
 			</buttons>
 		</popup>
 	</object>

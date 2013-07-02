@@ -2,7 +2,7 @@
 <results trackingurl="http://dev.junaio.com/publisherDownload/tutorial/tracking_tutorial.zip">
         <object id="1">
                 <popup>
-                        <description><![CDATA[This is our metaio man.]]></description>
+                        <description><![CDATA[Teste com o metaio man.]]></description>
                         <buttons>
                                 <button id="url" name="junaio dev page"><![CDATA[http://dev.junaio.com]]></button>
                         </buttons>
